@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="SensorBeckhoff" Id="{8d8bb85b-494f-0dfa-243d-888aa5e878a2}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'} 
+FUNCTION_BLOCK SensorBeckhoff IMPLEMENTS ISensor, __SYSTEM.IQueryInterface
+VAR
+	io_in			: REFERENCE TO SensorBeckhoffIO_in;
+	_value			: LREAL;
+	
+	inputMin		: LREAL;
+	inputMax		: LREAL;
+	outputMin		: LREAL;
+	outputMax		: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{0a9ff2f6-5677-023e-37fd-430c5cf6eb66}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	IO_in			: REFERENCE TO SensorBeckhoffIO_in;
+	InputMin		: LREAL;
+	InputMax		: LREAL;
+	OutputMin		: LREAL;
+	OutputMax		: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.io_in REF= IO_in;
+THIS^.inputMin := InputMin;
+THIS^.inputMax := InputMax;
+THIS^.outputMin := OutputMin;
+THIS^.outputMax := OutputMax;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="update" Id="{476afc7e-048b-02d8-1126-cfcbe86c5a52}">
+      <Declaration><![CDATA[METHOD update : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_value := transform(TO_LREAL(io_in.ValuesRaw), inputMin, inputMax, outputMin, outputMax, LimitY := TRUE);
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{c421dfad-fa40-0144-09ff-143801054b78}">
+      <Declaration><![CDATA[PROPERTY Value : LREAL]]></Declaration>
+      <Get Name="Get" Id="{c8851d03-277c-0800-250f-b862d105cbc1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := _value;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

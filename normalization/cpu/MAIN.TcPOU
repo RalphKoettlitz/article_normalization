@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{f0715e87-b5de-4c11-b311-c1d3824f18e7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	poti 	: SensorBeckhoff(IO.sensorPoti, 0, 32767, 0, 1);
+	vfd		: VFD;
+	
+	choice	: DINT := 1;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[poti.update();
+vfd.update();	
+
+		
+CASE choice OF
+	1: 	// run motor with 10% of SpeedMax and variable torque
+		vfd.executeOperation(0.1, poti.Value);
+		
+	2:	// run motor with varibale speed and 100% torque
+		vfd.executeOperation(poti.Value, 1);
+	
+END_CASE
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

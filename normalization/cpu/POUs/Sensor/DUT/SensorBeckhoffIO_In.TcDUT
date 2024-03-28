@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="SensorBeckhoffIO_In" Id="{31721cda-486d-0974-3faa-63c5e18a66e6}">
+    <Declaration><![CDATA[TYPE SensorBeckhoffIO_In :
+	STRUCT
+		ValuesRaw 		: INT;
+	END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

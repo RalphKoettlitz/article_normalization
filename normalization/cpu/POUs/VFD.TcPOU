@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="VFD" Id="{16d0b88d-bfb7-0c59-06c6-71c8d1f37c47}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'} 
+FUNCTION_BLOCK VFD
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="executeOperation" Id="{99cbc759-9fc9-0ce6-0a30-d4d6060afe93}">
+      <Declaration><![CDATA[METHOD executeOperation : BOOL
+VAR_INPUT
+	SpeedRel 	: LREAL;
+	TorqueRel	: LREAL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Speed" Id="{85d64c6f-c52c-099d-1fed-ed6c3b464301}">
+      <Declaration><![CDATA[PROPERTY Speed : LREAL]]></Declaration>
+      <Get Name="Get" Id="{f250d892-8c10-0a4c-2959-c6230b4068cc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="SpeedMax" Id="{d3a98068-0031-06b8-2da9-1feeff214ce1}">
+      <Declaration><![CDATA[PROPERTY SpeedMax : LREAL]]></Declaration>
+      <Get Name="Get" Id="{ed7e69d1-e98e-0d66-3e17-f213c69b0b99}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Torque" Id="{1dbc2f31-654a-073b-14bf-b792193a2c99}">
+      <Declaration><![CDATA[PROPERTY Torque : LREAL]]></Declaration>
+      <Get Name="Get" Id="{f9be3ff2-398b-00c1-184a-b8db285a4dc7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="TorqueMax" Id="{ddbe2a83-ce23-0310-351f-52e096aa2538}">
+      <Declaration><![CDATA[PROPERTY TorqueMax : LREAL
+]]></Declaration>
+      <Get Name="Get" Id="{5ab459a4-0d87-0512-3f39-f9564b2d3acf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="TorqueRel" Id="{2968dfc1-041d-022f-00fe-6a02e2f262d4}">
+      <Declaration><![CDATA[PROPERTY TorqueRel : LREAL]]></Declaration>
+      <Get Name="Get" Id="{2d7e146c-bd78-0602-2369-6dd386bf1236}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="update" Id="{cedb65b2-7991-05f7-2a0d-0e66b4975d69}">
+      <Declaration><![CDATA[METHOD update : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

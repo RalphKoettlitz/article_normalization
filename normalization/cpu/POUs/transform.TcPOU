@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="transform" Id="{db520fe3-2187-0b80-3332-bd095d00c7b4}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+	This function transform X range to a Y range, with the option of limiting 
+	the output Y.
+*)
+FUNCTION transform : LREAL
+VAR_INPUT
+	Value		: LREAL;
+	X1			: LREAL;
+	X2			: LREAL;
+	Y1			: LREAL;
+	Y2			: LREAL;
+	LimitY		: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF X2 - X1 <> 0 THEN
+	transform := (Y2 - Y1) / (X2 - X1) * (Value - X1) + Y1;
+	IF LimitY THEN
+		IF Y2 >= Y1 THEN 
+			transform := LIMIT(Y1, transform, Y2);
+		ELSE
+			transform := LIMIT(Y2, transform, Y1);			
+		END_IF
+	END_IF
+ELSE
+	transform := 0;
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
